@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <version>0.1.0</version>
+    <title>lqd.net.functional</title>
+    <authors>Paul Moore</authors>
+    <projectUrl>https://github.com/liquidazical/lqd.net.functional</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A set of functions and classes that aid a more functional approach in C#</description>
+    <releaseNotes>
+      ### Vr 0.1.0
+
+      * fmap - extension method that applies a function an a obect ( it is like map for objects )
+      * Maybe - an implementation of the Maybe monad
+      * Result - an implementation of a monad that represents the states of either a success with a value or an error with a description in the form of a ResultError
+    </releaseNotes>
+    <copyright>Copyright 2016</copyright>
+  </metadata>
+</package>
