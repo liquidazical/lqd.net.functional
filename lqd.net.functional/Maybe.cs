@@ -11,19 +11,19 @@ namespace lqd.net.functional {
         /// <summary>
         /// Creates a Maybe that represents having a value
         /// </summary>
-        public static Maybe<P> just
+        public static Maybe<P> Just
                                ( P value  ) {
 
-            return new Just( value );
+            return new JustM( value );
         }
 
         /// <summary>
         /// Creates a Maybe that represents having no value
         /// </summary>
-        public static Maybe<P> nothing
+        public static Maybe<P> Nothing
                                  ( ) {
 
-            return new Nothing();
+            return new NothingN();
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace lqd.net.functional {
           return 
             Match(
                just: f 
-              ,nothing: () => Maybe<Q>.nothing()
+              ,nothing: () => Maybe<Q>.Nothing()
             );
 
         }
@@ -56,6 +56,7 @@ namespace lqd.net.functional {
                          ( Func<Maybe<P>> f )  {
 
           if ( f == null ) throw new ArgumentNullException( nameof( f ) );
+
 
           return
             Match(  
@@ -77,11 +78,11 @@ namespace lqd.net.functional {
            if ( nothing == null ) throw new ArgumentNullException( nameof( nothing ) );
 
 
-           if ( this is Just ) {
-              return just( (this as Just).value );
+           if ( this is JustM ) {
+              return just( (this as JustM).value );
            }
 
-           if ( this is Nothing ) {
+           if ( this is NothingN ) {
                return nothing( );
            }
 
@@ -97,6 +98,10 @@ namespace lqd.net.functional {
                      ( Action<P> just 
                      , Action nothing ) {
 
+            if ( just == null ) throw new ArgumentNullException( nameof( just ) );
+            if ( nothing == null ) throw new ArgumentNullException( nameof( nothing ) );
+
+
             Match(
                just: p => { just( p ); return new object();  }
               ,nothing: () => { nothing(); return new object();  }
@@ -105,12 +110,12 @@ namespace lqd.net.functional {
         }
 
 
-        private class Just
+        private class JustM
                        : Maybe<P> {
 
             public P value { get; private set; }
 
-            public Just
+            public JustM
                     ( P value ) {
         
                 if ( value == null ) throw new ArgumentNullException( nameof( value ) );
@@ -120,7 +125,7 @@ namespace lqd.net.functional {
             }
         }
         
-        private class Nothing
+        private class NothingN
                        : Maybe<P> { }
                
 

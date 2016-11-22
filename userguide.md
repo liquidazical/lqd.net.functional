@@ -2,6 +2,7 @@
 
 
 * fmap
+* Maybe
 
 
 ## fmap
@@ -46,4 +47,48 @@ namespace test {
 
 ```
 
-There is also a variant that 
+There is also a variant that accepts an action rather than a function
+
+## Maybe
+
+This is an implemenation of the Maybe monad. The folloing methods are supported:
+
+* Just - factory method when you have a value
+* Nothing - factory method when you do not have a value
+* Bind - allows you to specify a continuation base on the value if it has one
+* Match - allows you to specify what should happen in either case 
+* HasValue - tells you if the maybe has a value ( note this is syntactic sugar over the match )
+* IfNothing - allows you to  specify a continuation if there is no value
+
+
+```
+using lqd.net.functional
+  ...
+
+  var a = new object();
+  var m = Maybe<object>.Just( a );
+  
+  var b = m.Match(
+      just: o => o
+     ,nothing: () => new object()
+  );
+  
+  
+  Assert.Equal( a, b );
+
+```
+
+```
+using lqd.net.functional
+  ...
+
+  var a = new object();
+  var m = Maybe<object>.Nothing();
+  
+  var b = m.Match(
+       just: o => { throw new Exception( "This case should never execute" ); }
+      ,nothing: () => a
+  );
+  
+  Assert.Equal( a, b );
+```

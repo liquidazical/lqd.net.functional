@@ -8,3 +8,4 @@ Provides a set of functions and object that are intended to aid applying a funct
 ### Next Version 
 
 * fmap - extension method that applies a function an a obect ( it is like map for objects )
+* Maybe - an implementation of the Maybe monad

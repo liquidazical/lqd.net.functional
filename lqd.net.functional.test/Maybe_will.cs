@@ -22,7 +22,7 @@ namespace lqd.net.functional.test {
         public void allow_you_to_create_a_maybe_with_a_value() {
 
             var a = new object();
-            var m = Maybe<object>.just( a );
+            var m = Maybe<object>.Just( a );
 
 
             Assert.True( m is Maybe<object> );
@@ -32,7 +32,7 @@ namespace lqd.net.functional.test {
         [Fact]
         public void throw_a_argument_null_exception_if_you_supply_a_null_when_trying_to_create_a_maybe_with_a_value() {
 
-            var act = (Action)( () => Maybe<object>.just( null ) );
+            var act = (Action)( () => Maybe<object>.Just( null ) );
 
 
             Assert.Throws<ArgumentNullException>( act );
@@ -42,7 +42,7 @@ namespace lqd.net.functional.test {
         [Fact]
         public void allow_you_to_create_a_maybe_without_a_value() {
 
-            var m = Maybe<object>.nothing();
+            var m = Maybe<object>.Nothing();
 
             Assert.True( m is Maybe<object> );
         }
@@ -52,7 +52,7 @@ namespace lqd.net.functional.test {
         public void allow_you_to_match_against_the_maybe_and_specify_a_function_to_perform_if_it_has_a_value () {
 
             var a = new object();
-            var m = Maybe<object>.just( a );
+            var m = Maybe<object>.Just( a );
 
             var b = m.Match(
                 just: o => o
@@ -67,7 +67,7 @@ namespace lqd.net.functional.test {
         public void allow_you_to_match_against_the_maybe_and_specify_a_function_to_perform_if_it_has_no_value() {
 
             var a = new object();
-            var m = Maybe<object>.nothing();
+            var m = Maybe<object>.Nothing();
 
             var b = m.Match(
                  just: o => { throw new Exception( "This case should never execute" ); }
@@ -80,8 +80,8 @@ namespace lqd.net.functional.test {
         [Fact]
         public void allow_you_to_check_if_there_is_a_value() {
 
-            var m1 = Maybe<object>.just( new object() );
-            var m2 = Maybe<object>.nothing();
+            var m1 = Maybe<object>.Just( new object() );
+            var m2 = Maybe<object>.Nothing();
 
 
             Assert.True( m1.HasValue() );
@@ -94,7 +94,7 @@ namespace lqd.net.functional.test {
             var a = new object();
             var b = new Object();
 
-            var m = Maybe<object>.just( a );
+            var m = Maybe<object>.Just( a );
 
             m.Match(
                just: n => { b = n;  }
@@ -111,7 +111,7 @@ namespace lqd.net.functional.test {
             var a = new object();
             var b = new Object();
 
-            var m = Maybe<object>.nothing( );
+            var m = Maybe<object>.Nothing( );
 
             m.Match(
                just: n => { throw new ArgumentNullException( "This case should never be called" ); }
@@ -126,8 +126,8 @@ namespace lqd.net.functional.test {
         [Fact]
         public void allow_you_to_specify_an_action_if_there_is_a_value() {
 
-            var ma = Maybe<object>.just( new object() );
-            var mb = Maybe<object>.just( new object() );
+            var ma = Maybe<object>.Just( new object() );
+            var mb = Maybe<object>.Just( new object() );
 
 
             Assert.Equal( mb, ma.Bind( a => mb ) );
@@ -137,8 +137,8 @@ namespace lqd.net.functional.test {
         [Fact]
         public void allow_you_to_specify_an_action_if_there_is_not_a_value() {
 
-            var ma = Maybe<object>.nothing();
-            var mb = Maybe<object>.just( new object() );
+            var ma = Maybe<object>.Nothing();
+            var mb = Maybe<object>.Just( new object() );
 
 
             Assert.Equal( mb, ma.IfNothing( () => mb ) );
