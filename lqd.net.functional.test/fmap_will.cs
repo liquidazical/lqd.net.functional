@@ -7,6 +7,7 @@ namespace lqd.net.functional.test {
     public class fmap_will {
 
         // done: apply the function to the object to be mapped
+        // apply an action to the object begin mapped
         // done: throw an argument null exception if the object to be mapped is null
         // done: throw an argument null exception if the function to apply is null
 
@@ -18,6 +19,18 @@ namespace lqd.net.functional.test {
 
 
             Assert.Equal( a, a.fmap( f ) );
+        }
+
+        [Fact]
+        public void apply_an_action_to_the_object_begin_mapped() {
+            
+            var a = new object();
+            var b = (object)null;
+            var f = (Action<object>)( x => b = x );
+
+            a.fmap( f );
+
+            Assert.Equal( a, b );
         }
 
         [Fact]

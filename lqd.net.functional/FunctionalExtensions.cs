@@ -19,5 +19,16 @@ namespace lqd.net.functional {
 
             return f( p );
         }
+
+
+        public static void fmap<P>
+                            ( this P p 
+                            , Action<P> a ) {
+
+            if ( p == null ) throw new ArgumentNullException( nameof( p ) );
+            if ( a == null ) throw new ArgumentNullException( nameof( a ) );
+
+            a( p );
+        }
     }
 }
