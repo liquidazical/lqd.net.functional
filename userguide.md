@@ -3,6 +3,7 @@
 
 * fmap
 * Maybe
+* Result
 
 
 ## fmap
@@ -51,7 +52,7 @@ There is also a variant that accepts an action rather than a function
 
 ## Maybe
 
-This is an implemenation of the Maybe monad. The folloing methods are supported:
+This is an implemenation of the Maybe monad. The following methods are supported:
 
 * Just - factory method when you have a value
 * Nothing - factory method when you do not have a value
@@ -88,6 +89,49 @@ using lqd.net.functional
   var b = m.Match(
        just: o => { throw new Exception( "This case should never execute" ); }
       ,nothing: () => a
+  );
+  
+  Assert.Equal( a, b );
+```
+
+
+## Maybe
+
+This is an implementation of a monad that represents the states of either a success with a value or an error with a description in the form of a ResultError. The following methods are supported:
+
+* Success - factory method when you have a value
+* Error - factory method when you have one or more errors
+* Bind - allows you to specify a continuation base on the value if it has one
+* Match - allows you to specify what should happen in either case 
+* Verify - allows you to apply a check to the value if it has one which will result in the result or an error  
+
+```
+using lqd.net.functional
+  ...
+
+  var a = new object();
+  var r = Result<object>.Success( a );
+  
+  var b = r.Match(
+      success: o => o
+     ,error: errors => new object()
+  );
+  
+  
+  Assert.Equal( a, b );
+
+```
+
+```
+using lqd.net.functional
+  ...
+
+  var a = new object();
+  var r = Result<object>.Error();
+  
+  var b = r.Match(
+       success: o => { throw new Exception( "This case should never execute" ); }
+      ,error: errors => a
   );
   
   Assert.Equal( a, b );
