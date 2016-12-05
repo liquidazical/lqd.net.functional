@@ -7,6 +7,8 @@ Provides a set of functions and object that are intended to aid applying a funct
 
 ### Next Version 
 
+### Vr 0.2.0 
+
 * Either - implementation of the Either monad
 
 ### Vr 0.1.0
