@@ -2,13 +2,18 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
     <title>lqd.net.functional</title>
     <authors>Paul Moore</authors>
     <projectUrl>https://github.com/liquidazical/lqd.net.functional</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A set of functions and classes that aid a more functional approach in C#</description>
     <releaseNotes>
+      ### Vr 0.3.0
+
+      * Either - added match that accepts actions
+
+
       ### Vr 0.2.0
 
       * Either - implementation of the Either monad
