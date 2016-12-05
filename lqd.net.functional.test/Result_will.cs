@@ -25,7 +25,6 @@ namespace lqd.net.functional.test {
             Assert.True( r is Result<object> );
         }
         
-
         [Fact]
         public void throw_a_argument_null_exception_if_you_supply_a_null_when_trying_to_create_a_success_result() {
 
@@ -44,7 +43,6 @@ namespace lqd.net.functional.test {
 
             Assert.True( r is Result<object> );
         }
-
 
         [Fact]
         public void allow_you_to_create_a_result_with_multiple_errors() {
@@ -110,4 +108,5 @@ namespace lqd.net.functional.test {
         public class TestResultError : ResultError { }
 
     }
+
 }

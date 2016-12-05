@@ -1,9 +1,52 @@
 # lqd.net.functional user guide
 
-
+* Either
 * fmap
 * Maybe
 * Result
+
+
+## Either
+
+This is an implementation of a monad that represents a choice of eithe a left or right value. The following methods are supported:
+
+* Left - factory method when you have a value
+* Right - factory method when you have one or more errors
+* IfLeft - Continuation where the function is applied if it is a left value
+* LiftIfLeft - Syntactic sugar over IfLet that will lift the result into an either monand
+* IfRight - Continuation where the function is applied if it is a right value 
+* LiftIfRight - Syntactic sugar over IfRight that will lift the result into an either monand
+* Match - allows you to specify what should happen in either case 
+
+```
+using lqd.net.functional
+  ...
+
+  var a = new object();
+  var either = Either<object,object>.Left( a );
+
+  var b = either.Match(
+     left: o => o
+    ,right: o => { throw new Exception( "Unexpected case" ); } 
+  );
+
+  Assert.Equal( a, b );
+```
+
+```
+using lqd.net.functional
+  ...
+
+  var a = new object();
+  var either = Either<object,object>.Right( a );
+
+  var b = either.Match(
+     left: o => { throw new Exception( "Unexpected case" ); }
+    ,right: o => o
+  );
+
+  Assert.Equal( a, b );
+```
 
 
 ## fmap
@@ -95,7 +138,7 @@ using lqd.net.functional
 ```
 
 
-## Maybe
+## Result
 
 This is an implementation of a monad that represents the states of either a success with a value or an error with a description in the form of a ResultError. The following methods are supported:
 

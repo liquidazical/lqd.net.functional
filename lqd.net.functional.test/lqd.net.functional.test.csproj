@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Either_will.cs" />
     <Compile Include="fmap_will.cs" />
     <Compile Include="Maybe_will.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

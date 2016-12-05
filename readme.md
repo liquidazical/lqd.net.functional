@@ -7,6 +7,8 @@ Provides a set of functions and object that are intended to aid applying a funct
 
 ### Next Version 
 
+* Either - implementation of the Either monad
+
 ### Vr 0.1.0
 
 * fmap - extension method that applies a function an a obect ( it is like map for objects )

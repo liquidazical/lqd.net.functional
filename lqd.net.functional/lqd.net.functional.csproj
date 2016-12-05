@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Either.cs" />
     <Compile Include="ResultError.cs" />
     <Compile Include="FunctionalExtensions.cs" />
     <Compile Include="Maybe.cs" />
