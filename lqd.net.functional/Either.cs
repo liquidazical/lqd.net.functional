@@ -93,6 +93,21 @@ namespace lqd.net.functional {
         }
 
 
+        public void Match
+                     ( Action<left> left
+                     , Action<right> right ) {
+
+            if ( left == null ) throw new ArgumentNullException( nameof( left ) );
+            if ( right == null ) throw new ArgumentNullException( nameof( right ) );
+
+
+            Match(
+               left: l => { left( l ); return new object(); }
+              ,right: r => { right( r ); return new object(); }
+            );
+
+        }
+
 
         private class LeftE : Either<left,right> {
 

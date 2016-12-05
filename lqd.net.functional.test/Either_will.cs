@@ -17,6 +17,9 @@ namespace lqd.net.functional.test {
         // done: map the left through on an right action if it is a left
         // done: provide a lifted left
         // done: provide a lifted right
+        // done: allow you to match against the left with an action
+        // done: allow you to match against the right with an action
+
 
         [Fact]
         public void allow_you_to_create_a_left_either() {
@@ -177,6 +180,41 @@ namespace lqd.net.functional.test {
 
             Assert.Equal( a, b );
         }
+
+        [Fact]
+        public void allow_you_to_match_against_the_left_with_an_action() {
+
+            var a = new object();
+            var b = (object)null;
+
+            var either = Either<object,object>.Left( a );
+
+            either.Match(
+               left: o => b = o
+              ,right: o => { throw new Exception( "Unexpected case" ); } 
+            );
+
+            Assert.Equal( a, b );
+
+
+        }
+
+        [Fact]
+        public void allow_you_to_match_against_the_right_with_an_action() {
+
+            var a = new object();
+            var b = (object)null;
+
+            var either = Either<object,object>.Right( a );
+
+            either.Match(
+               left: o => { throw new Exception( "Unexpected case" ); }
+              ,right: o => b = o
+            );
+
+            Assert.Equal( a, b );
+        } 
+
 
         private class Left { }
         private class Right { }
